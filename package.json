@@ -1,0 +1,9 @@
+{
+  "name": "crudux",
+  "version": "0.0.1",
+  "description": "Utilities for generating redux crud functionality",
+  "main": "dist/index.js",
+  "repository": "https://github.com/forma-exacta/crudux.git",
+  "author": "bob <robert.mccracken@formaexacta.com>",
+  "license": "MIT"
+}
