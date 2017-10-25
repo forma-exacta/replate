@@ -5,5 +5,13 @@
   "main": "dist/index.js",
   "repository": "https://github.com/forma-exacta/crudux.git",
   "author": "bob <robert.mccracken@formaexacta.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "babel-jest": "^21.2.0",
+    "babel-preset-es2015": "^6.24.1",
+    "jest": "^21.2.1"
+  }
 }
