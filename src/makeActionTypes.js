@@ -19,5 +19,9 @@ export const partials = partialActions.reduce((result, partialAction) => {
 }, [])
 
 export default (domainName) => {
-  return partials.map((partial) => `${domainName.toUpperCase()}_${partial}`)
+  return partials.reduce((result, partial) => {
+    const key = `${domainName.toUpperCase()}_${partial}`
+    result[key] = key
+    return result
+  }, {})
 }

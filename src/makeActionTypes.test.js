@@ -25,8 +25,18 @@ describe('makeActionTypes', () => {
   })
 
   it('generates all actionTypes for domain name', () => {
-    expect(makeActionTypes('test1')).toEqual(testPartials.map(partial => `TEST1_${partial}`))
-    expect(makeActionTypes('TEST2')).toEqual(testPartials.map(partial => `TEST2_${partial}`))
+    expect(makeActionTypes('TEST1')).toEqual(testPartials.reduce((result, partial) => {
+      const key = `TEST1_${partial}`
+      result[key] = key
+      return result
+    }, {}))
+
+    // touppercase
+    expect(makeActionTypes('test2')).toEqual(testPartials.reduce((result, partial) => {
+      const key = `TEST2_${partial}`
+      result[key] = key
+      return result
+    }, {}))
   })
 
 })
