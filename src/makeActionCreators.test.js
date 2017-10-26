@@ -18,13 +18,11 @@ describe('makeActionCreators', () => {
     const actionCreators = makeCRUDActionCreators('test')
 
     expect(actionCreators.create()).toEqual({
-      type: 'TEST:CREATE',
       payload: {_id: expect.any(String)}
     })
 
     // with payload
     expect(actionCreators.create({test: 'payload'})).toEqual({
-      type: 'TEST:CREATE',
       payload: {test: 'payload', _id: expect.any(String)}
     })
   })
@@ -33,7 +31,6 @@ describe('makeActionCreators', () => {
     const actionCreators = makeCRUDActionCreators('test')
 
     expect(actionCreators.create()).toEqual({
-      type: expect.any(String),
       payload: {_id: 'uuidmock'}
     })
   })
@@ -42,7 +39,6 @@ describe('makeActionCreators', () => {
     const actionCreators = makeCRUDActionCreators('test')
 
     expect(actionCreators.create({_id: 'testid'})).toEqual({
-      type: expect.any(String),
       payload: {_id: 'testid'}
     })
   })
@@ -51,7 +47,6 @@ describe('makeActionCreators', () => {
     const actionCreators = makeCRUDActionCreators('test')
 
     expect(actionCreators.read('testid')).toEqual({
-      type: 'TEST:READ',
       payload: {_id: 'testid'}
     })
 
@@ -68,13 +63,11 @@ describe('makeActionCreators', () => {
     const actionCreators = makeCRUDActionCreators('test')
 
     expect(actionCreators.update('testid')).toEqual({
-      type: 'TEST:UPDATE',
       payload: {_id: 'testid'}
     })
 
     // with payload
     expect(actionCreators.update('testid', {test: 'payload'})).toEqual({
-      type: 'TEST:UPDATE',
       payload: {test: 'payload', _id: 'testid'}
     })
   })
@@ -83,7 +76,6 @@ describe('makeActionCreators', () => {
     const actionCreators = makeCRUDActionCreators('test')
 
     expect(actionCreators.delete('testid')).toEqual({
-      type: 'TEST:DELETE',
       payload: {_id: 'testid'}
     })
 

@@ -6,7 +6,6 @@ export const makeCRUDActionCreators = (domainName) => {
   const actionCreators = {
     create: (payload) => {
       return {
-        type: makeActionTypeFromActionName(domainName, 'create'),
         payload: {_id: uuidv4(), ...payload}
       }
     },
@@ -16,13 +15,11 @@ export const makeCRUDActionCreators = (domainName) => {
       }
 
       return {
-        type: makeActionTypeFromActionName(domainName, 'read'),
         payload: {_id: id}
       }
     },
     update: (id, payload) => {
       return {
-        type: makeActionTypeFromActionName(domainName, 'update'),
         payload: {...payload, _id: id}
       }
     },
@@ -32,7 +29,6 @@ export const makeCRUDActionCreators = (domainName) => {
       }
 
       return {
-        type: makeActionTypeFromActionName(domainName, 'delete'),
         payload: {_id: id}
       }
     },
