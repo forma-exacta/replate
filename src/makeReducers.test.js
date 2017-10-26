@@ -1,4 +1,4 @@
-import makeReducers from './makeReducers'
+import {makeCRUDReducer} from './makeReducers'
 
 describe('makeReducers', () => {
   it('has one test', () => {
@@ -6,11 +6,9 @@ describe('makeReducers', () => {
   })
 
   it('creates default state', () => {
-    expect(makeReducers('test')(undefined, {})).toEqual({
-      test: {
-        byId: {},
-        allIds: []
-      }
+    expect(makeCRUDReducer('test')(undefined, {})).toEqual({
+      byId: {},
+      allIds: []
     })
   })
 })

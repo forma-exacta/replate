@@ -1,9 +1,9 @@
-import makeActionTypes from './makeActionTypes'
+import {makeCRUDActionTypes} from './makeActionTypes'
 import uuidv4 from 'uuid/v4'
 
-export default (domainName) => {
+export const makeCRUDActionCreators = (domainName) => {
 
-  const actionTypes = makeActionTypes(domainName)
+  const actionTypes = makeCRUDActionTypes(domainName)
 
   const actionCreators = {
     create: (payload) => {

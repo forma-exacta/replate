@@ -1,10 +1,10 @@
-import makeActionCreators from './makeActionCreators'
+import {makeCRUDActionCreators} from './makeActionCreators'
 import uuidv4 from 'uuid/v4'
 
 describe('makeActionCreators', () => {
 
-  it('creates action types', () => {
-    const {actionTypes} = makeActionCreators('test')
+  it('CRUD creates action types', () => {
+    const {actionTypes} = makeCRUDActionCreators('test')
 
     expect(actionTypes).toEqual({
       CREATE: 'CREATE_TEST',
@@ -14,8 +14,8 @@ describe('makeActionCreators', () => {
     })
   })
 
-  it('creates crud methods', () => {
-    const {actionCreators} = makeActionCreators('test')
+  it('CRUD creates crud methods', () => {
+    const {actionCreators} = makeCRUDActionCreators('test')
 
     expect(actionCreators).toEqual(expect.objectContaining({
       create: expect.any(Function),
@@ -25,8 +25,8 @@ describe('makeActionCreators', () => {
     }))
   })
 
-  it('create method returns create action', () => {
-    const dux = makeActionCreators('test')
+  it('CRUD create method returns create action', () => {
+    const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.create()).toEqual({
       type: dux.actionTypes.CREATE,
@@ -40,8 +40,8 @@ describe('makeActionCreators', () => {
     })
   })
 
-  it('create method adds a uuid if none is provided', () => {
-    const dux = makeActionCreators('test')
+  it('CRUD create method adds a uuid if none is provided', () => {
+    const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.create()).toEqual({
       type: expect.any(String),
@@ -49,8 +49,8 @@ describe('makeActionCreators', () => {
     })
   })
 
-  it('create method uses id if it is provided', () => {
-    const dux = makeActionCreators('test')
+  it('CRUD create method uses id if it is provided', () => {
+    const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.create({_id: 'testid'})).toEqual({
       type: expect.any(String),
@@ -58,8 +58,8 @@ describe('makeActionCreators', () => {
     })
   })
 
-  it('read method returns read action', () => {
-    const dux = makeActionCreators('test')
+  it('CRUD read method returns read action', () => {
+    const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.read('testid')).toEqual({
       type: dux.actionTypes.READ,
@@ -68,15 +68,15 @@ describe('makeActionCreators', () => {
 
   })
 
-  it('read method requires id', () => {
-    const dux = makeActionCreators('test')
+  it('CRUD read method requires id', () => {
+    const dux = makeCRUDActionCreators('test')
 
     expect(() => dux.actionCreators.read()).toThrowError('id is required for read')
 
   })
 
-  it('update method returns update action', () => {
-    const dux = makeActionCreators('test')
+  it('CRUD update method returns update action', () => {
+    const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.update('testid')).toEqual({
       type: dux.actionTypes.UPDATE,
@@ -90,8 +90,8 @@ describe('makeActionCreators', () => {
     })
   })
 
-  it('delete method returns delete action', () => {
-    const dux = makeActionCreators('test')
+  it('CRUD delete method returns delete action', () => {
+    const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.delete('testid')).toEqual({
       type: dux.actionTypes.DELETE,
@@ -100,8 +100,8 @@ describe('makeActionCreators', () => {
 
   })
 
-  it('delete method requires id', () => {
-    const dux = makeActionCreators('test')
+  it('CRUD delete method requires id', () => {
+    const dux = makeCRUDActionCreators('test')
 
     expect(() => dux.actionCreators.delete()).toThrowError('id is required for delete')
 
