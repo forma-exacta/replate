@@ -41,4 +41,52 @@ describe('makeActionCreators', () => {
     })
   })
 
+  it('read method returns read action', () => {
+    const dux = makeActionCreators('test')
+
+    expect(dux.actionCreators.read('testid')).toEqual({
+      type: dux.actionTypes.READ_TEST,
+      payload: {id: 'testid'}
+    })
+
+  })
+
+  it('read method requires id', () => {
+    const dux = makeActionCreators('test')
+
+    expect(() => dux.actionCreators.read()).toThrowError('id is required for read')
+
+  })
+
+  it('update method returns update action', () => {
+    const dux = makeActionCreators('test')
+
+    expect(dux.actionCreators.update()).toEqual({
+      type: dux.actionTypes.UPDATE_TEST
+    })
+
+    // with payload
+    expect(dux.actionCreators.update({test: 'payload'})).toEqual({
+      type: dux.actionTypes.UPDATE_TEST,
+      payload: {test: 'payload'}
+    })
+  })
+
+  it('delete method returns delete action', () => {
+    const dux = makeActionCreators('test')
+
+    expect(dux.actionCreators.delete('testid')).toEqual({
+      type: dux.actionTypes.DELETE_TEST,
+      payload: {id: 'testid'}
+    })
+
+  })
+
+  it('delete method requires id', () => {
+    const dux = makeActionCreators('test')
+
+    expect(() => dux.actionCreators.delete()).toThrowError('id is required for delete')
+
+  })
+
 })
