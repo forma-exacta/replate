@@ -74,13 +74,13 @@ describe('makeActionTypes', () => {
       theActionUPPERName: () => {},
       CAPSName: () => {},
     })).toEqual({
-      THE_ACTION_NAME: 'DOMAIN:THE_ACTION_NAME',
-      ACTION: 'DOMAIN:ACTION',
-      THE_ACTION_NAME_123: 'DOMAIN:THE_ACTION_NAME_123',
-      MAYBE_ATRICKY_ONE: 'DOMAIN:MAYBE_ATRICKY_ONE',
-      MAYBE_A_TRICKY_ONE: 'DOMAIN:MAYBE_A_TRICKY_ONE',
-      THE_ACTION_UPPER_NAME: 'DOMAIN:THE_ACTION_UPPER_NAME',
-      CAPS_NAME: 'DOMAIN:CAPS_NAME'
+      theActionName: 'DOMAIN:THE_ACTION_NAME',
+      action: 'DOMAIN:ACTION',
+      theActionName123: 'DOMAIN:THE_ACTION_NAME_123',
+      maybeAtrickyOne: 'DOMAIN:MAYBE_ATRICKY_ONE',
+      maybeATrickyOne: 'DOMAIN:MAYBE_A_TRICKY_ONE',
+      theActionUPPERName: 'DOMAIN:THE_ACTION_UPPER_NAME',
+      CAPSName: 'DOMAIN:CAPS_NAME'
     })
   })
 

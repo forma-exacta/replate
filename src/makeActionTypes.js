@@ -17,7 +17,7 @@ const makeActionTypeFromActionName = (domainName, actionName) => {
     return `${$2.substring(0, $2.length - 1)}_${$2.substring($2.length - 1)}${$3}`
   })
   underscored = underscored.toUpperCase()
-  return {[underscored]: makeActionType(domainName, underscored)}
+  return {[actionName]: makeActionType(domainName, underscored)}
 }
 
 export const makeActionTypesFromActions = (domainName, actions) => {
