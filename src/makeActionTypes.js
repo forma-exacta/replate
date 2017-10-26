@@ -7,8 +7,8 @@ export const crudPartials = [
   'DELETE'
 ]
 
-export const makeActionType = (partial, domainName) => {
-  return `${partial}_${domainName.toUpperCase()}`
+export const makeActionType = (domainName, partial) => {
+  return `${domainName.toUpperCase()}:${partial.toUpperCase()}`
 }
 
 export const makeCRUDActionTypes = (domainName) => {
@@ -19,9 +19,7 @@ const makeActionTypes = (domainName, partials) => {
   partials = partials || crudPartials
 
   return partials.reduce((result, partial) => {
-    partial = partial.toUpperCase()
-    const value = makeActionType(partial, domainName)
-    result[partial] = value
+    result[partial.toUpperCase()] = makeActionType(domainName, partial)
     return result
   }, {})
 }

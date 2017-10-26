@@ -7,10 +7,10 @@ describe('makeActionCreators', () => {
     const {actionTypes} = makeCRUDActionCreators('test')
 
     expect(actionTypes).toEqual({
-      CREATE: 'CREATE_TEST',
-      READ: 'READ_TEST',
-      UPDATE: 'UPDATE_TEST',
-      DELETE: 'DELETE_TEST'
+      CREATE: 'TEST:CREATE',
+      READ: 'TEST:READ',
+      UPDATE: 'TEST:UPDATE',
+      DELETE: 'TEST:DELETE'
     })
   })
 

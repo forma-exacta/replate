@@ -1,4 +1,4 @@
-import makeActionTypes, {crudPartials, makeCRUDActionTypes} from './makeActionTypes'
+import makeActionTypes, {crudPartials, makeCRUDActionTypes, makeActionType} from './makeActionTypes'
 
 const testCRUDPartials = [
   'CREATE',
@@ -9,20 +9,20 @@ const testCRUDPartials = [
 
 describe('makeActionTypes', () => {
 
+  it('- makeActionType concatenates partial and domain name', () => {
+    expect(makeActionType('DOMAIN', 'PARTIAL')).toEqual('DOMAIN:PARTIAL')
+  })
+
+  it('- makeActionType converts domain and partial to upperCase', () => {
+    expect(makeActionType('domain', 'partial')).toEqual('DOMAIN:PARTIAL')
+  })
+
   it('generates all actionTypes for domain name', () => {
     const partials = ['P1', 'P2']
     const domainName = 'TEST1'
 
     expect(makeActionTypes(domainName, partials)).toEqual(partials.reduce((result, partial) => {
-      const value = `${partial}_${domainName}`
-      result[partial] = value
-      return result
-    }, {}))
-
-    // touppercase
-    expect(makeActionTypes('test2')).toEqual(testCRUDPartials.reduce((result, partial) => {
-      const value = `${partial}_TEST2`
-      result[partial] = value
+      result[partial] = makeActionType(domainName, partial)
       return result
     }, {}))
   })
@@ -33,7 +33,7 @@ describe('makeActionTypes', () => {
 
     // touppercase
     expect(makeActionTypes(domainName, partials)).toEqual(partials.reduce((result, partial) => {
-      const value = `${partial}_${domainName.toUpperCase()}`
+      const value = `${domainName.toUpperCase()}:${partial}`
       result[partial] = value
       return result
     }, {}))
@@ -45,7 +45,7 @@ describe('makeActionTypes', () => {
 
     // touppercase
     expect(makeActionTypes(domainName, partials)).toEqual(partials.reduce((result, partial) => {
-      const value = `${partial.toUpperCase()}_${domainName}`
+      const value = `${domainName}:${partial.toUpperCase()}`
       result[partial.toUpperCase()] = value
       return result
     }, {}))
@@ -59,8 +59,7 @@ describe('makeActionTypes', () => {
     const domainName = 'TESTCRUD'
 
     expect(makeCRUDActionTypes(domainName)).toEqual(testCRUDPartials.reduce((result, partial) => {
-      const value = `${partial}_${domainName}`
-      result[partial] = value
+      result[partial] = makeActionType(domainName, partial)
       return result
     }, {}))
   })
