@@ -1,6 +1,6 @@
 
 
-export const partials = [
+export const _partials = [
   'CREATE',
   'READ',
   'UPDATE',
@@ -11,7 +11,9 @@ export const makeActionType = (partial, domainName) => {
   return `${partial}_${domainName.toUpperCase()}`
 }
 
-export default (domainName) => {
+export default (domainName, partials) => {
+  partials = partials || _partials
+
   return partials.reduce((result, partial) => {
     const value = makeActionType(partial, domainName)
     result[partial] = value

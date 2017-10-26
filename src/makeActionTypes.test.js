@@ -1,4 +1,4 @@
-import makeActionTypes, {partials} from './makeActionTypes'
+import makeActionTypes, {_partials} from './makeActionTypes'
 
 const testPartials = [
   'CREATE',
@@ -10,7 +10,7 @@ const testPartials = [
 describe('makeActionTypes', () => {
 
   it('has actionType partials', () => {
-    expect(partials).toEqual(testPartials)
+    expect(_partials).toEqual(testPartials)
   })
 
   it('generates all actionTypes for domain name', () => {
