@@ -1,1 +1,1 @@
-# redux-collection
+# dux
