@@ -64,6 +64,16 @@ describe('makeActionTypes', () => {
     }, {}))
   })
 
+  it('makeActionTypeFromActionName underscores and uppercases', () => {
+    expect(makeActionTypeFromActionName('domain', 'theActionName')).toEqual('DOMAIN:THE_ACTION_NAME')
+    expect(makeActionTypeFromActionName('domain', 'action')).toEqual('DOMAIN:ACTION')
+    expect(makeActionTypeFromActionName('domain', 'theActionName123')).toEqual('DOMAIN:THE_ACTION_NAME_123')
+    expect(makeActionTypeFromActionName('domain', 'maybeAtrickyOne')).toEqual('DOMAIN:MAYBE_ATRICKY_ONE')
+    expect(makeActionTypeFromActionName('domain', 'maybeATrickyOne')).toEqual('DOMAIN:MAYBE_A_TRICKY_ONE')
+    expect(makeActionTypeFromActionName('domain', 'theActionUPPERName')).toEqual('DOMAIN:THE_ACTION_UPPER_NAME')
+    expect(makeActionTypeFromActionName('domain', 'CAPSName')).toEqual('DOMAIN:CAPS_NAME')
+  })
+
   it('makeActionTypesFromActions converts all action names', () => {
     expect(makeActionTypesFromActions('domain', {
       theActionName: () => {},
