@@ -1,6 +1,6 @@
 
 
-export const _partials = [
+export const crudPartials = [
   'CREATE',
   'READ',
   'UPDATE',
@@ -12,7 +12,7 @@ export const makeActionType = (partial, domainName) => {
 }
 
 export default (domainName, partials) => {
-  partials = partials || _partials
+  partials = partials || crudPartials
 
   return partials.reduce((result, partial) => {
     const value = makeActionType(partial, domainName)
