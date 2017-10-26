@@ -1,1 +1,1 @@
-# crudux
+# redux-collection
