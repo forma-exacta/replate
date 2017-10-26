@@ -3,17 +3,6 @@ import uuidv4 from 'uuid/v4'
 
 describe('makeActionCreators', () => {
 
-  it('CRUD creates action types', () => {
-    const {actionTypes} = makeCRUDActionCreators('test')
-
-    expect(actionTypes).toEqual({
-      create: 'TEST:CREATE',
-      read: 'TEST:READ',
-      update: 'TEST:UPDATE',
-      delete: 'TEST:DELETE'
-    })
-  })
-
   it('CRUD creates crud methods', () => {
     const {actionCreators} = makeCRUDActionCreators('test')
 
