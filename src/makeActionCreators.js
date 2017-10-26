@@ -1,14 +1,12 @@
-import {makeCRUDActionTypes} from './makeActionTypes'
+import {makeActionTypeFromActionName, makeActionTypesFromActions} from './makeActionTypes'
 import uuidv4 from 'uuid/v4'
 
 export const makeCRUDActionCreators = (domainName) => {
 
-  const actionTypes = makeCRUDActionTypes(domainName)
-
   const actionCreators = {
     create: (payload) => {
       return {
-        type: actionTypes.CREATE,
+        type: makeActionTypeFromActionName(domainName, 'create'),
         payload: {_id: uuidv4(), ...payload}
       }
     },
@@ -18,13 +16,13 @@ export const makeCRUDActionCreators = (domainName) => {
       }
 
       return {
-        type: actionTypes.READ,
+        type: makeActionTypeFromActionName(domainName, 'read'),
         payload: {_id: id}
       }
     },
     update: (id, payload) => {
       return {
-        type: actionTypes.UPDATE,
+        type: makeActionTypeFromActionName(domainName, 'update'),
         payload: {...payload, _id: id}
       }
     },
@@ -34,15 +32,12 @@ export const makeCRUDActionCreators = (domainName) => {
       }
 
       return {
-        type: actionTypes.DELETE,
+        type: makeActionTypeFromActionName(domainName, 'delete'),
         payload: {_id: id}
       }
     },
   }
 
-  return {
-    actionTypes,
-    actionCreators
-  }
+  return actionCreators
 
 }

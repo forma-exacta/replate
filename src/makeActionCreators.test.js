@@ -7,10 +7,10 @@ describe('makeActionCreators', () => {
     const {actionTypes} = makeCRUDActionCreators('test')
 
     expect(actionTypes).toEqual({
-      CREATE: 'TEST:CREATE',
-      READ: 'TEST:READ',
-      UPDATE: 'TEST:UPDATE',
-      DELETE: 'TEST:DELETE'
+      create: 'TEST:CREATE',
+      read: 'TEST:READ',
+      update: 'TEST:UPDATE',
+      delete: 'TEST:DELETE'
     })
   })
 
@@ -29,13 +29,13 @@ describe('makeActionCreators', () => {
     const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.create()).toEqual({
-      type: dux.actionTypes.CREATE,
+      type: dux.actionTypes.create,
       payload: {_id: expect.any(String)}
     })
 
     // with payload
     expect(dux.actionCreators.create({test: 'payload'})).toEqual({
-      type: dux.actionTypes.CREATE,
+      type: dux.actionTypes.create,
       payload: {test: 'payload', _id: expect.any(String)}
     })
   })
@@ -62,7 +62,7 @@ describe('makeActionCreators', () => {
     const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.read('testid')).toEqual({
-      type: dux.actionTypes.READ,
+      type: dux.actionTypes.read,
       payload: {_id: 'testid'}
     })
 
@@ -79,13 +79,13 @@ describe('makeActionCreators', () => {
     const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.update('testid')).toEqual({
-      type: dux.actionTypes.UPDATE,
+      type: dux.actionTypes.update,
       payload: {_id: 'testid'}
     })
 
     // with payload
     expect(dux.actionCreators.update('testid', {test: 'payload'})).toEqual({
-      type: dux.actionTypes.UPDATE,
+      type: dux.actionTypes.update,
       payload: {test: 'payload', _id: 'testid'}
     })
   })
@@ -94,7 +94,7 @@ describe('makeActionCreators', () => {
     const dux = makeCRUDActionCreators('test')
 
     expect(dux.actionCreators.delete('testid')).toEqual({
-      type: dux.actionTypes.DELETE,
+      type: dux.actionTypes.delete,
       payload: {_id: 'testid'}
     })
 
