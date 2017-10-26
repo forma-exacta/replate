@@ -10,7 +10,6 @@ describe('DuckCollection', () => {
 
     expect(duck.actionTypes).toEqual({
       create: 'TEST:CREATE',
-      read: 'TEST:READ',
       update: 'TEST:UPDATE',
       delete: 'TEST:DELETE'
     })
@@ -21,7 +20,6 @@ describe('DuckCollection', () => {
 
     expect(duck.actions).toEqual({
       create: expect.any(Function),
-      read: expect.any(Function),
       update: expect.any(Function),
       delete: expect.any(Function),
     })

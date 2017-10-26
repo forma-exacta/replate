@@ -9,16 +9,11 @@ export const makeCRUDActionCreators = (domainName) => {
         payload: {_id: uuidv4(), ...payload}
       }
     },
-    read: (id) => {
+    update: (id, payload) => {
       if(typeof id === 'undefined') {
-        throw new Error('id is required for read')
+        throw new Error('id is required for update')
       }
 
-      return {
-        payload: {_id: id}
-      }
-    },
-    update: (id, payload) => {
       return {
         payload: {...payload, _id: id}
       }

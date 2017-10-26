@@ -2,7 +2,6 @@ import makeActionTypes, {crudPartials, makeCRUDActionTypes, makeActionType, make
 
 const testCRUDPartials = [
   'CREATE',
-  'READ',
   'UPDATE',
   'DELETE',
 ]

@@ -2,7 +2,6 @@
 
 export const crudPartials = [
   'CREATE',
-  'READ',
   'UPDATE',
   'DELETE'
 ]

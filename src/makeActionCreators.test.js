@@ -8,7 +8,6 @@ describe('makeActionCreators', () => {
 
     expect(actionCreators).toEqual(expect.objectContaining({
       create: expect.any(Function),
-      read: expect.any(Function),
       update: expect.any(Function),
       delete: expect.any(Function),
     }))
@@ -43,19 +42,10 @@ describe('makeActionCreators', () => {
     })
   })
 
-  it('CRUD read method returns read action', () => {
+  it('CRUD update method requires id', () => {
     const actionCreators = makeCRUDActionCreators('test')
 
-    expect(actionCreators.read('testid')).toEqual({
-      payload: {_id: 'testid'}
-    })
-
-  })
-
-  it('CRUD read method requires id', () => {
-    const actionCreators = makeCRUDActionCreators('test')
-
-    expect(() => actionCreators.read()).toThrowError('id is required for read')
+    expect(() => actionCreators.update()).toThrowError('id is required for update')
 
   })
 
