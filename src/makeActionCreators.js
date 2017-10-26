@@ -1,4 +1,5 @@
 import makeActionTypes from './makeActionTypes'
+import uuidv4 from 'uuid/v4'
 
 export default (domainName) => {
 
@@ -7,8 +8,8 @@ export default (domainName) => {
   const actionCreators = {
     create: (payload) => {
       return {
-        type: actionTypes[`CREATE_${domainName.toUpperCase()}`],
-        payload
+        type: actionTypes.CREATE,
+        payload: {_id: uuidv4(), ...payload}
       }
     },
     read: (id) => {
@@ -17,14 +18,14 @@ export default (domainName) => {
       }
 
       return {
-        type: actionTypes[`READ_${domainName.toUpperCase()}`],
-        payload: {id}
+        type: actionTypes.READ,
+        payload: {_id: id}
       }
     },
-    update: (payload) => {
+    update: (id, payload) => {
       return {
-        type: actionTypes[`UPDATE_${domainName.toUpperCase()}`],
-        payload
+        type: actionTypes.UPDATE,
+        payload: {...payload, _id: id}
       }
     },
     delete: (id) => {
@@ -33,8 +34,8 @@ export default (domainName) => {
       }
 
       return {
-        type: actionTypes[`DELETE_${domainName.toUpperCase()}`],
-        payload: {id}
+        type: actionTypes.DELETE,
+        payload: {_id: id}
       }
     },
   }

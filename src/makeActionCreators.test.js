@@ -1,18 +1,16 @@
 import makeActionCreators from './makeActionCreators'
+import uuidv4 from 'uuid/v4'
 
 describe('makeActionCreators', () => {
-  it('has one test', () => {
-    expect(true)
-  })
 
   it('creates action types', () => {
     const {actionTypes} = makeActionCreators('test')
 
     expect(actionTypes).toEqual({
-      CREATE_TEST: 'CREATE_TEST',
-      READ_TEST: 'READ_TEST',
-      UPDATE_TEST: 'UPDATE_TEST',
-      DELETE_TEST: 'DELETE_TEST'
+      CREATE: 'CREATE_TEST',
+      READ: 'READ_TEST',
+      UPDATE: 'UPDATE_TEST',
+      DELETE: 'DELETE_TEST'
     })
   })
 
@@ -31,13 +29,32 @@ describe('makeActionCreators', () => {
     const dux = makeActionCreators('test')
 
     expect(dux.actionCreators.create()).toEqual({
-      type: dux.actionTypes.CREATE_TEST
+      type: dux.actionTypes.CREATE,
+      payload: {_id: expect.any(String)}
     })
 
     // with payload
     expect(dux.actionCreators.create({test: 'payload'})).toEqual({
-      type: dux.actionTypes.CREATE_TEST,
-      payload: {test: 'payload'}
+      type: dux.actionTypes.CREATE,
+      payload: {test: 'payload', _id: expect.any(String)}
+    })
+  })
+
+  it('create method adds a uuid if none is provided', () => {
+    const dux = makeActionCreators('test')
+
+    expect(dux.actionCreators.create()).toEqual({
+      type: expect.any(String),
+      payload: {_id: 'uuidmock'}
+    })
+  })
+
+  it('create method uses id if it is provided', () => {
+    const dux = makeActionCreators('test')
+
+    expect(dux.actionCreators.create({_id: 'testid'})).toEqual({
+      type: expect.any(String),
+      payload: {_id: 'testid'}
     })
   })
 
@@ -45,8 +62,8 @@ describe('makeActionCreators', () => {
     const dux = makeActionCreators('test')
 
     expect(dux.actionCreators.read('testid')).toEqual({
-      type: dux.actionTypes.READ_TEST,
-      payload: {id: 'testid'}
+      type: dux.actionTypes.READ,
+      payload: {_id: 'testid'}
     })
 
   })
@@ -61,14 +78,15 @@ describe('makeActionCreators', () => {
   it('update method returns update action', () => {
     const dux = makeActionCreators('test')
 
-    expect(dux.actionCreators.update()).toEqual({
-      type: dux.actionTypes.UPDATE_TEST
+    expect(dux.actionCreators.update('testid')).toEqual({
+      type: dux.actionTypes.UPDATE,
+      payload: {_id: 'testid'}
     })
 
     // with payload
-    expect(dux.actionCreators.update({test: 'payload'})).toEqual({
-      type: dux.actionTypes.UPDATE_TEST,
-      payload: {test: 'payload'}
+    expect(dux.actionCreators.update('testid', {test: 'payload'})).toEqual({
+      type: dux.actionTypes.UPDATE,
+      payload: {test: 'payload', _id: 'testid'}
     })
   })
 
@@ -76,8 +94,8 @@ describe('makeActionCreators', () => {
     const dux = makeActionCreators('test')
 
     expect(dux.actionCreators.delete('testid')).toEqual({
-      type: dux.actionTypes.DELETE_TEST,
-      payload: {id: 'testid'}
+      type: dux.actionTypes.DELETE,
+      payload: {_id: 'testid'}
     })
 
   })
