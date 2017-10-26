@@ -1,4 +1,4 @@
-import makeActionTypes, {crudPartials, makeCRUDActionTypes, makeActionType} from './makeActionTypes'
+import makeActionTypes, {crudPartials, makeCRUDActionTypes, makeActionType, makeActionTypeFromActionName, makeActionTypesFromActions} from './makeActionTypes'
 
 const testCRUDPartials = [
   'CREATE',
@@ -62,6 +62,26 @@ describe('makeActionTypes', () => {
       result[partial] = makeActionType(domainName, partial)
       return result
     }, {}))
+  })
+
+  it('makeActionTypesFromActions converts all action names', () => {
+    expect(makeActionTypesFromActions('domain', {
+      theActionName: () => {},
+      action: () => {},
+      theActionName123: () => {},
+      maybeAtrickyOne: () => {},
+      maybeATrickyOne: () => {},
+      theActionUPPERName: () => {},
+      CAPSName: () => {},
+    })).toEqual({
+      THE_ACTION_NAME: 'DOMAIN:THE_ACTION_NAME',
+      ACTION: 'DOMAIN:ACTION',
+      THE_ACTION_NAME_123: 'DOMAIN:THE_ACTION_NAME_123',
+      MAYBE_ATRICKY_ONE: 'DOMAIN:MAYBE_ATRICKY_ONE',
+      MAYBE_A_TRICKY_ONE: 'DOMAIN:MAYBE_A_TRICKY_ONE',
+      THE_ACTION_UPPER_NAME: 'DOMAIN:THE_ACTION_UPPER_NAME',
+      CAPS_NAME: 'DOMAIN:CAPS_NAME'
+    })
   })
 
 })
