@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-import createReducer from './createReducer'
 import makeActionTypes from './makeActionTypes'
 
 export const reducer = (initialState, handlers) => {
@@ -13,18 +11,22 @@ export const reducer = (initialState, handlers) => {
   }
 }
 
-export const makeCRUDReducer = (domainName) => {
+export const makeCRUDReducers = (domainName) => {
 
   const actionTypes = makeActionTypes(domainName)
 
-  const rootReducer = reducer({byId: {}, allIds:[]}, {
-
+  const byId = reducer({byId: {}}, {
     [actionTypes.CREATE](state, action) {
 
     }
-
   })
 
-  return rootReducer
+  const allIds = reducer({allIds: []}, {
+    [actionTypes.CREATE](state, action) {
+
+    }
+  })
+
+  return {byId, allIds}
 
 }
