@@ -27,4 +27,18 @@ describe('DuckCollection', () => {
     })
   })
 
+  it('can add additional actions', () => {
+    const duck = new DuckCollection('test')
+
+    duck.addAction('newAction', () => {})
+
+    expect(duck.actionTypes).toEqual(expect.objectContaining({
+      newAction: 'TEST:NEW_ACTION'
+    }))
+
+    expect(duck.actions).toEqual(expect.objectContaining({
+      newAction: expect.any(Function)
+    }))
+  })
+
 })
