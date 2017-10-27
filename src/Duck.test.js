@@ -22,6 +22,14 @@ describe('Duck', () => {
     expect((new Duck('testduck', [])).reducer).not.toBeNull()
   })
 
+  it('adds action types', () => {
+    const duck = new Duck('testduck')
+
+    duck.addActionType('bla')
+
+    expect(duck.actionTypes.bla).toEqual('TESTDUCK:BLA')
+  })
+
   it('adds actions', () => {
     const duck = new Duck('testduck')
 

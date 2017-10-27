@@ -26,9 +26,13 @@ export default class Duck {
   get reducers() {return this._reducers}
   get reducer() {return this._reducer}
 
+  addActionType(typeName) {
+    this._actionTypes[typeName] = makeActionType(this._domainName, typeName)
+  }
+
   addAction(actionName, action, options) {
     options = {...addActionOptions, ...options}
-    
+
     if(options.addActionType) {
       const actionType = makeActionTypeFromActionName(this._domainName, actionName)
       this._actionTypes[actionName] = actionType
