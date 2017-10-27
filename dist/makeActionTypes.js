@@ -43,3 +43,4 @@ var makeActionTypes = function makeActionTypes(domainName, partials) {
 };
 
 exports.default = makeActionTypes;
+//# sourceMappingURL=makeActionTypes.js.map

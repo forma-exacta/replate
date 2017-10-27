@@ -39,3 +39,4 @@ var DuckCollection = function (_Duck) {
 }(_Duck3.default);
 
 exports.default = DuckCollection;
+//# sourceMappingURL=DuckCollection.js.map

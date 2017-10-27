@@ -126,3 +126,4 @@ var Duck = function () {
 }();
 
 exports.default = Duck;
+//# sourceMappingURL=Duck.js.map

@@ -51,3 +51,4 @@ var makeCRUDReducers = exports.makeCRUDReducers = function makeCRUDReducers(doma
 
   return { byId: byId, allIds: allIds };
 };
+//# sourceMappingURL=makeReducers.js.map

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/index.js"],"names":["Duck","DuckCollection"],"mappings":";;;;;;;AAAA;;;;AACA;;;;;;QAGEA,I;QACAC,c","file":"index.js","sourcesContent":["import Duck from './Duck'\r\nimport DuckCollection from './DuckCollection'\r\n\r\nexport {\r\n  Duck,\r\n  DuckCollection\r\n}\r\n"]}
