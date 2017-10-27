@@ -1,2 +1,6 @@
 .babelrc
 yarn.lock
+/src
+/.git
+/__mocks__
+/node_modules
