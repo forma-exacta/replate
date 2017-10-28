@@ -3,8 +3,8 @@ import uuidv4 from 'uuid/v4'
 
 export default class Collection extends ComplexState {
 
-  constructor(name) {
-    super(name, {byId: {}, allIds: []}, {
+  constructor(name, defaultState, subState) {
+    super(name, {byId: {}, allIds: [], ...defaultState}, {
       byId: {
         upsert: (state, action) => {
           action.payload._id = action.payload._id || uuidv4()
@@ -34,7 +34,8 @@ export default class Collection extends ComplexState {
           newState.splice(newState.indexOf(action.payload._id), 1)
           return newState
         }
-      }
+      },
+      ...subState
     })
   }
 

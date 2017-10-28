@@ -65,4 +65,15 @@ describe('Collection', () => {
 
   })
 
+  it('accepts additional substate', () => {
+    const state = new Collection('CollectionTest', {another: 'substate'}, {
+      another: {
+        testAction: () => {}
+      }
+    })
+
+    expect(state.actionTypes.testAction).toBeDefined()
+    expect(state.actions.testAction).toEqual(expect.any(Function))
+  })
+
 })
