@@ -27,10 +27,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Collection = function (_ComplexState) {
   _inherits(Collection, _ComplexState);
 
-  function Collection(name) {
+  function Collection(name, defaultState, subState) {
     _classCallCheck(this, Collection);
 
-    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, name, { byId: {}, allIds: [] }, {
+    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, name, _extends({ byId: {}, allIds: [] }, defaultState), _extends({
       byId: {
         upsert: function upsert(state, action) {
           action.payload._id = action.payload._id || (0, _v2.default)();
@@ -57,7 +57,7 @@ var Collection = function (_ComplexState) {
           return newState;
         }
       }
-    }));
+    }, subState)));
   }
 
   return Collection;

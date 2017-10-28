@@ -3,13 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.makeActionTypesFromActions = exports.underscore = exports.makeActionTypeFromActionName = exports.makeActionType = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _globalOptions = require('./globalOptions');
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var makeActionType = exports.makeActionType = function makeActionType(domainName, partial) {
-  return domainName.toUpperCase() + ':' + partial.toUpperCase();
+  return '' + (typeof (0, _globalOptions.getOptions)().namespace != 'undefined' ? (0, _globalOptions.getOptions)().namespace + '.' : '') + domainName.toUpperCase() + ':' + partial.toUpperCase();
 };
 
 var makeActionTypeFromActionName = exports.makeActionTypeFromActionName = function makeActionTypeFromActionName(domainName, actionName) {
