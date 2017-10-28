@@ -1,11 +1,3 @@
-
-
-export const crudPartials = [
-  'CREATE',
-  'UPDATE',
-  'DELETE'
-]
-
 export const makeActionType = (domainName, partial) => {
   return `${domainName.toUpperCase()}:${partial.toUpperCase()}`
 }
@@ -27,10 +19,6 @@ export const makeActionTypesFromActions = (domainName, actions) => {
   return Object.keys(actions).reduce((result, actionName) => {
     return {...result, [actionName]: makeActionTypeFromActionName(domainName, actionName)}
   }, {})
-}
-
-export const makeCRUDActionTypes = (domainName) => {
-  return makeActionTypes(domainName, crudPartials)
 }
 
 const makeActionTypes = (domainName, partials) => {

@@ -1,7 +1,11 @@
-import Duck from './Duck'
-import DuckCollection from './DuckCollection'
+import State from './State'
+import ValueState from './ValueState'
+import ComplexState from './ComplexState'
+import Collection from './Collection'
 
 export {
-  Duck,
-  DuckCollection
+  State,
+  ValueState,
+  ComplexState,
+  Collection
 }

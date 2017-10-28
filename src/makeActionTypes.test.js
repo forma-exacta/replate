@@ -1,11 +1,5 @@
 import makeActionTypes, {crudPartials, makeCRUDActionTypes, makeActionType, makeActionTypeFromActionName, makeActionTypesFromActions} from './makeActionTypes'
 
-const testCRUDPartials = [
-  'CREATE',
-  'UPDATE',
-  'DELETE',
-]
-
 describe('makeActionTypes', () => {
 
   it('- makeActionType concatenates partial and domain name', () => {
@@ -46,19 +40,6 @@ describe('makeActionTypes', () => {
     expect(makeActionTypes(domainName, partials)).toEqual(partials.reduce((result, partial) => {
       const value = `${domainName}:${partial.toUpperCase()}`
       result[partial.toUpperCase()] = value
-      return result
-    }, {}))
-  })
-
-  it('has CRUD actionType partials', () => {
-    expect(crudPartials).toEqual(testCRUDPartials)
-  })
-
-  it('generates all CRUD action types', () => {
-    const domainName = 'TESTCRUD'
-
-    expect(makeCRUDActionTypes(domainName)).toEqual(testCRUDPartials.reduce((result, partial) => {
-      result[partial] = makeActionType(domainName, partial)
       return result
     }, {}))
   })
