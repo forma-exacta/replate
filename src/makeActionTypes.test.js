@@ -69,7 +69,7 @@ describe('makeActionTypes', () => {
     expect(makeActionTypeFromActionName('domain', 'theActionName123')).toEqual('DOMAIN:THE_ACTION_NAME_123')
     expect(makeActionTypeFromActionName('domain', 'maybeAtrickyOne')).toEqual('DOMAIN:MAYBE_ATRICKY_ONE')
     expect(makeActionTypeFromActionName('domain', 'maybeATrickyOne')).toEqual('DOMAIN:MAYBE_A_TRICKY_ONE')
-    expect(makeActionTypeFromActionName('domain', 'theActionUPPERName')).toEqual('DOMAIN:THE_ACTION_UPPER_NAME')
+    expect(makeActionTypeFromActionName('domainName', 'theActionUPPERName')).toEqual('DOMAIN_NAME:THE_ACTION_UPPER_NAME')
     expect(makeActionTypeFromActionName('domain', 'CAPSName')).toEqual('DOMAIN:CAPS_NAME')
   })
 
