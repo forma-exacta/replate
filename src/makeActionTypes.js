@@ -1,5 +1,7 @@
+import {getOptions} from './globalOptions'
+
 export const makeActionType = (domainName, partial) => {
-  return `${domainName.toUpperCase()}:${partial.toUpperCase()}`
+  return `${typeof getOptions().namespace != 'undefined' ? getOptions().namespace + '.' : ''}${domainName.toUpperCase()}:${partial.toUpperCase()}`
 }
 
 export const makeActionTypeFromActionName = (domainName, actionName) => {

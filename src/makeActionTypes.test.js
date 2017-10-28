@@ -1,4 +1,5 @@
 import makeActionTypes, {crudPartials, makeCRUDActionTypes, makeActionType, makeActionTypeFromActionName, makeActionTypesFromActions} from './makeActionTypes'
+import {setOption} from './globalOptions'
 
 describe('makeActionTypes', () => {
 
@@ -8,6 +9,12 @@ describe('makeActionTypes', () => {
 
   it('- makeActionType converts domain and partial to upperCase', () => {
     expect(makeActionType('domain', 'partial')).toEqual('DOMAIN:PARTIAL')
+  })
+
+  it(':: makeActionType uses namespace', () => {
+    setOption('namespace', 'com.forma')
+    expect(makeActionType('domain', 'partial')).toEqual('com.forma.DOMAIN:PARTIAL')
+    setOption('namespace')
   })
 
   it('generates all actionTypes for domain name', () => {
