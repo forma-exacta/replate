@@ -1,6 +1,5 @@
 import State from './State'
 import {makeReducer} from './makeReducer'
-import {combineReducers} from 'redux'
 
 export default class ComplexState extends State {
 
@@ -22,7 +21,7 @@ export default class ComplexState extends State {
     }, {})
 
     if(Object.keys(subReducers).length) {
-      this.reducer = combineReducers(subReducers)
+      this.reducer = subReducers
     }
     else {
       this.reducer = () => this.initialState

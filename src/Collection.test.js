@@ -1,5 +1,6 @@
 import Collection from './Collection'
 import {makeActionTypeFromActionName} from './makeActionTypes'
+import {combineReducers} from 'redux'  // I probably shouldn't do this, but f it
 
 describe('Collection', () => {
 
@@ -14,20 +15,20 @@ describe('Collection', () => {
       upsert: expect.any(Function),
       remove: expect.any(Function)
     })
-    expect(state.reducer).toEqual(expect.any(Function))
+    expect(combineReducers(state.reducer)).toEqual(expect.any(Function))
   })
 
   it('sets default state', () => {
     const state = new Collection('CollectionTest')
 
-    expect(state.reducer(undefined, {})).toEqual({byId: {}, allIds: []})
+    expect(combineReducers(state.reducer)(undefined, {})).toEqual({byId: {}, allIds: []})
   })
 
   it('::upsert inserts a new element with an id', () => {
 
     const state = new Collection('CollectionTest')
     const action = state.actions.upsert({name: 'test'})
-    const newState = state.reducer(undefined, action)
+    const newState = combineReducers(state.reducer)(undefined, action)
 
     expect(newState.allIds.length).toBe(1)
     const id = newState.allIds[0]
@@ -43,7 +44,7 @@ describe('Collection', () => {
       allIds: [1]
     }
     const action = state.actions.upsert({_id: 1, add: 'new property'})
-    const newState = state.reducer(initialState, action)
+    const newState = combineReducers(state.reducer)(initialState, action)
 
     expect(newState.allIds.length).toBe(1)
     expect(newState.byId[1]).toEqual({_id: 1, add: 'new property'})
@@ -58,7 +59,7 @@ describe('Collection', () => {
       allIds: [1]
     }
     const action = state.actions.remove({_id: 1})
-    const newState = state.reducer(initialState, action)
+    const newState = combineReducers(state.reducer)(initialState, action)
 
     expect(newState.allIds.length).toBe(0)
     expect(newState.byId[1]).not.toBeDefined()

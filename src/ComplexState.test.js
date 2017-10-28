@@ -38,7 +38,10 @@ describe('ComplexState', () => {
       add: expect.any(Function),
       remove: expect.any(Function)
     })
-    expect(state.reducer).toEqual(expect.any(Function))
+    expect(state.reducer).toEqual({
+      byId: expect.any(Function),
+      allIds: expect.any(Function)
+    })
   })
 
   it('sets default state', () => {
@@ -49,12 +52,7 @@ describe('ComplexState', () => {
 
   it('reducer responds to all action types', () => {
 
-    const initialState = {
-      byId: {},
-      allIds: []
-    }
-
-    const state = new ComplexState('ComplexState', initialState, {
+    const state = new ComplexState('ComplexState', {byId: {}, allIds: []}, {
       byId: {
         add: (state, action) => ({
           ...state,
@@ -85,8 +83,10 @@ describe('ComplexState', () => {
       allIds: [1]
     }
 
-    expect(state.reducer(initialState, {type: state.actionTypes.add, payload: {_id:1}})).toEqual(state1)
-    expect(state.reducer(state1, {type: state.actionTypes.remove, payload: {_id: 1}})).toEqual(initialState)
+    expect(state.reducer.byId({}, {type: state.actionTypes.add, payload: {_id:1}})).toEqual({1: {_id: 1}})
+    expect(state.reducer.byId({1: {_id: 1}}, {type: state.actionTypes.remove, payload: {_id:1}})).toEqual({})
+    expect(state.reducer.allIds([], {type: state.actionTypes.add, payload: {_id:1}})).toEqual([1])
+    expect(state.reducer.allIds([1], {type: state.actionTypes.remove, payload: {_id:1}})).toEqual([])
   })
 
 })
