@@ -10,8 +10,6 @@ var _State3 = _interopRequireDefault(_State2);
 
 var _makeReducer = require('./makeReducer');
 
-var _redux = require('redux');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45,7 +43,7 @@ var ComplexState = function (_State) {
     }, {});
 
     if (Object.keys(subReducers).length) {
-      _this.reducer = (0, _redux.combineReducers)(subReducers);
+      _this.reducer = subReducers;
     } else {
       _this.reducer = function () {
         return _this.initialState;
