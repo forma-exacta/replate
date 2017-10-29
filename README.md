@@ -51,14 +51,10 @@ expect(valueState.reducer(10, incAction)).toEqual(11)
 expect(valueState.reducer(11, decAction)).toEqual(10)
 ```
 
----
-
 ## 2. Installation
 ```
 npm install replate
 ```
-
----
 
 ## 3. Usage
 

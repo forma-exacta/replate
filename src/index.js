@@ -1,11 +1,9 @@
-import ValueState from './ValueState'
-import ComplexState from './ComplexState'
+import State from './State'
 import Collection from './Collection'
 import globalOptions from './globalOptions'
 
 export {
-  ValueState,
-  ComplexState,
+  State,
   Collection,
   globalOptions
 }
