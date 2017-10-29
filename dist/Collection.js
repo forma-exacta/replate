@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _ComplexState2 = require('./ComplexState');
+var _State2 = require('./State');
 
-var _ComplexState3 = _interopRequireDefault(_ComplexState2);
+var _State3 = _interopRequireDefault(_State2);
 
 var _v = require('uuid/v4');
 
@@ -24,14 +24,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Collection = function (_ComplexState) {
-  _inherits(Collection, _ComplexState);
+var Collection = function (_State) {
+  _inherits(Collection, _State);
 
-  function Collection(name, defaultState, subState) {
+  function Collection(name, initialState, subState) {
     _classCallCheck(this, Collection);
 
-    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, name, _extends({ byId: {}, allIds: [] }, defaultState), _extends({
-      byId: {
+    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, name, initialState, _extends({
+      byId: new _State3.default('byId', {}, {
         upsert: function upsert(state, action) {
           action.payload._id = action.payload._id || (0, _v2.default)();
 
@@ -42,8 +42,8 @@ var Collection = function (_ComplexState) {
           delete newState[action.payload._id];
           return newState;
         }
-      },
-      allIds: {
+      }),
+      allIds: new _State3.default('allIds', [], {
         upsert: function upsert(state, action) {
           if (state.includes(action.payload._id)) return state;
 
@@ -56,12 +56,12 @@ var Collection = function (_ComplexState) {
           newState.splice(newState.indexOf(action.payload._id), 1);
           return newState;
         }
-      }
+      })
     }, subState)));
   }
 
   return Collection;
-}(_ComplexState3.default);
+}(_State3.default);
 
 exports.default = Collection;
 //# sourceMappingURL=Collection.js.map

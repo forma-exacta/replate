@@ -3,11 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.globalOptions = exports.Collection = exports.ComplexState = exports.ValueState = exports.State = undefined;
-
-var _State = require('./State');
-
-var _State2 = _interopRequireDefault(_State);
+exports.globalOptions = exports.Collection = exports.ComplexState = exports.ValueState = undefined;
 
 var _ValueState = require('./ValueState');
 
@@ -27,7 +23,6 @@ var _globalOptions2 = _interopRequireDefault(_globalOptions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.State = _State2.default;
 exports.ValueState = _ValueState2.default;
 exports.ComplexState = _ComplexState2.default;
 exports.Collection = _Collection2.default;
