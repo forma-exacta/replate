@@ -1,24 +1,24 @@
-import State from './State'
+import AbstractState from './AbstractState'
 
-describe('State', () => {
+describe('AbstractState', () => {
 
   it('sets name to value passed in constructor', () => {
-    expect((new State('test')).name).toEqual('test')
+    expect((new AbstractState('test')).name).toEqual('test')
   })
 
   it('sets initial state passed in constructor', () => {
-    expect((new State('test', {initial:'state'})).initialState).toEqual({initial:'state'})
+    expect((new AbstractState('test', {initial:'state'})).initialState).toEqual({initial:'state'})
   })
 
   it('makes action types with {underscored stateName}:{underscored action name} format', () => {
-    const state = new State('stateName')
+    const state = new AbstractState('stateName')
     state.makeActionType('actionName')
 
     expect(state.actionTypes.actionName).toEqual('STATE_NAME:ACTION_NAME')
   })
 
   it('makes actions that return corresponding type and payload', () => {
-    const state = new State('stateName')
+    const state = new AbstractState('stateName')
     state.makeActionType('actionName')
     state.makeAction('actionName')
 

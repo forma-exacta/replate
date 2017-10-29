@@ -1,11 +1,11 @@
-import ComplexState from './ComplexState'
+import State from './State'
 import uuidv4 from 'uuid/v4'
 
-export default class Collection extends ComplexState {
+export default class Collection extends State {
 
-  constructor(name, defaultState, subState) {
-    super(name, {byId: {}, allIds: [], ...defaultState}, {
-      byId: {
+  constructor(name, initialState, subState) {
+    super(name, initialState, {
+      byId: new State('byId', {}, {
         upsert: (state, action) => {
           action.payload._id = action.payload._id || uuidv4()
 
@@ -19,8 +19,8 @@ export default class Collection extends ComplexState {
           delete newState[action.payload._id]
           return newState
         }
-      },
-      allIds: {
+      }),
+      allIds: new State('allIds', [], {
         upsert: (state, action) => {
           if(state.includes(action.payload._id))
             return state
@@ -34,7 +34,7 @@ export default class Collection extends ComplexState {
           newState.splice(newState.indexOf(action.payload._id), 1)
           return newState
         }
-      },
+      }),
       ...subState
     })
   }

@@ -1,6 +1,7 @@
 import Collection from './Collection'
 import {makeActionTypeFromActionName} from './makeActionTypes'
 import {combineReducers} from 'redux'  // I probably shouldn't do this, but f it
+import State from './State'
 
 describe('Collection', () => {
 
@@ -68,9 +69,9 @@ describe('Collection', () => {
 
   it('accepts additional substate', () => {
     const state = new Collection('CollectionTest', {another: 'substate'}, {
-      another: {
-        testAction: () => {}
-      }
+      another: new State('another', null, {
+        testAction: () => ({})
+      })
     })
 
     expect(state.actionTypes.testAction).toBeDefined()

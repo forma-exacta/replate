@@ -1,17 +1,17 @@
-import ValueState from './ValueState'
+import State from './State'
 import {makeActionTypeFromActionName} from './makeActionTypes'
 
-describe('ValueState', () => {
+describe('State', () => {
 
   it('generates types, actions, and reducer', () => {
-    const state = new ValueState('ValueState', null, {
+    const state = new State('State', null, {
       set: () => action.payload,
       inc: () => state + action.payload
     })
 
     expect(state.actionTypes).toEqual({
-      set: makeActionTypeFromActionName('ValueState', 'set'),
-      inc: makeActionTypeFromActionName('ValueState', 'inc'),
+      set: makeActionTypeFromActionName('State', 'set'),
+      inc: makeActionTypeFromActionName('State', 'inc'),
     })
     expect(state.actions).toEqual({
       set: expect.any(Function),
@@ -21,13 +21,13 @@ describe('ValueState', () => {
   })
 
   it('sets default state', () => {
-    const state = new ValueState('ValueState', 'defaultState')
+    const state = new State('State', 'defaultState')
 
     expect(state.reducer(undefined, {})).toEqual('defaultState')
   })
 
   it('reducer responds to all action types', () => {
-    const state = new ValueState('ValueState', null, {
+    const state = new State('State', null, {
       set: (state, action) => action.payload,
       inc: (state, action) => state + action.payload
     })

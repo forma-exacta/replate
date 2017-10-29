@@ -6,6 +6,9 @@
   "repository": "https://github.com/forma-exacta/replate.git",
   "author": "bob <robert.mccracken@formaexacta.com>",
   "license": "MIT",
+  "keywords": [
+    "redux", "boilerplate"
+  ],
   "scripts": {
     "test": "jest",
     "build": "babel src -d dist --ignore *.test.js --source-maps"
