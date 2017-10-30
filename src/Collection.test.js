@@ -68,7 +68,7 @@ describe('Collection', () => {
   })
 
   it('accepts additional substate', () => {
-    const state = new Collection('CollectionTest', {another: 'substate'}, {
+    const state = new Collection('CollectionTest', {
       another: new State('another', null, {
         testAction: () => ({})
       })

@@ -3,8 +3,8 @@ import uuidv4 from 'uuid/v4'
 
 export default class Collection extends State {
 
-  constructor(name, initialState, subState) {
-    super(name, initialState, {
+  constructor(name, subState) {
+    super(name, {}, {
       byId: new State('byId', {}, {
         upsert: (state, action) => {
           action.payload._id = action.payload._id || uuidv4()
