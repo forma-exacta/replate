@@ -27,10 +27,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Collection = function (_State) {
   _inherits(Collection, _State);
 
-  function Collection(name, initialState, subState) {
+  function Collection(name, subState) {
     _classCallCheck(this, Collection);
 
-    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, name, initialState, _extends({
+    return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, name, {}, _extends({
       byId: new _State3.default('byId', {}, {
         upsert: function upsert(state, action) {
           action.payload._id = action.payload._id || (0, _v2.default)();
