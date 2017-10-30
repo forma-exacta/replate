@@ -150,7 +150,7 @@ Given a name, initialValue, and a reducerMap, this will generate all of the boil
 > new ValueState(*stateName*[, *initialValue*, *reducerMap*])
 
 | parameter | description |
-| --- | --- | --- |
+| --- | --- |
 | stateName | The name of the state. This will be converted to upper snake case and prepended to any action type names |
 | initialValue | The default state value |
 | reducerMap | Can follow either the 'Value' or 'Nested' state pattern shown in the examples above. |
@@ -158,7 +158,7 @@ Given a name, initialValue, and a reducerMap, this will generate all of the boil
 
 ##### properties
 | property | description |
-| --- | --- | --- |
+| --- | --- |
 | actionTypes | A map of action types. The key is derived from the reducerMap passed into the constructor. The value is a concatenation of the state name and action name. See [Action Type Naming](#action-type-naming) for more details. |
 | actions | A map of action names and methods. The method will return an object with the structure `{type, payload}` where payload is whatever you pass into the method. |
 | reducer | If you used the 'Value' pattern, a reducer method with signature `reducer(state, action)`. If you used the nested pattern, a map of named reducers. |
@@ -180,7 +180,7 @@ expect(collection.actionTypes.remove).toEqual('SCREENS:REMOVE')
 > new ValueState(*stateName*[, *reducerMap*])
 
 | parameter | description |
-| --- | --- | --- |
+| --- | --- |
 | stateName | The name of the state. This will be converted to upper snake case and prepended to any action type names |
 | reducerMap | Nested state in addition to `byId` and `allIds` |
 
