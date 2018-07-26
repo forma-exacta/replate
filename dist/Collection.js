@@ -16,6 +16,8 @@ var _v2 = _interopRequireDefault(_v);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33,9 +35,19 @@ var Collection = function (_State) {
     return _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, name, {}, _extends({
       byId: new _State3.default('byId', {}, {
         upsert: function upsert(state, action) {
-          action.payload._id = action.payload._id || (0, _v2.default)();
+          var newState = {};
 
-          return _extends({}, state, _defineProperty({}, action.payload._id, action.payload));
+          if (Array.isArray(action.payload)) {
+            newState = action.payload.reduce(function (res, curr) {
+              curr._id = curr._id || (0, _v2.default)();
+              return _extends({}, res, _defineProperty({}, curr._id, curr));
+            }, {});
+          } else {
+            action.payload._id = action.payload._id || (0, _v2.default)();
+            newState = _defineProperty({}, action.payload._id, action.payload);
+          }
+
+          return _extends({}, state, newState);
         },
         remove: function remove(state, action) {
           var newState = _extends({}, state);
@@ -45,11 +57,17 @@ var Collection = function (_State) {
       }),
       allIds: new _State3.default('allIds', [], {
         upsert: function upsert(state, action) {
-          if (state.includes(action.payload._id)) return state;
+          if (Array.isArray(action.payload)) {
+            state = [].concat(_toConsumableArray(state), _toConsumableArray(action.payload.map(function (val) {
+              return val._id;
+            })));
+          } else {
+            state.push(action.payload._id);
+          }
 
-          var newState = state.slice();
-          newState.push(action.payload._id);
-          return newState;
+          return state.filter(function (value, index, self) {
+            return self.indexOf(value) === index;
+          });
         },
         remove: function remove(state, action) {
           var newState = state.slice();
