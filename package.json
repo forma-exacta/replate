@@ -1,6 +1,6 @@
 {
   "name": "replate",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Utilities for reducing redux boilerplate",
   "main": "dist/index.js",
   "repository": "https://github.com/forma-exacta/replate.git",
