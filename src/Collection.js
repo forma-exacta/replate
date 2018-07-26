@@ -7,11 +7,22 @@ export default class Collection extends State {
     super(name, {}, {
       byId: new State('byId', {}, {
         upsert: (state, action) => {
-          action.payload._id = action.payload._id || uuidv4()
+          let newState = {}
+
+          if(Array.isArray(action.payload)) {
+            newState = action.payload.reduce((res, curr) => {
+              curr._id = curr._id || uuidv4()
+              return {...res, [curr._id]: curr}
+            }, {})
+          }
+          else {
+            action.payload._id = action.payload._id || uuidv4()
+            newState = {[action.payload._id]: action.payload}
+          }
 
           return {
             ...state,
-            [action.payload._id]: action.payload
+            ...newState
           }
         },
         remove: (state, action) => {
@@ -22,12 +33,14 @@ export default class Collection extends State {
       }),
       allIds: new State('allIds', [], {
         upsert: (state, action) => {
-          if(state.includes(action.payload._id))
-            return state
+          if(Array.isArray(action.payload)) {
+            state = [...state, ...action.payload.map(val => val._id)]
+          }
+          else {
+            state.push(action.payload._id)
+          }
 
-          let newState = state.slice()
-          newState.push(action.payload._id)
-          return newState
+          return state.filter((value, index, self) => self.indexOf(value) === index)
         },
         remove: (state, action) => {
           let newState = state.slice();

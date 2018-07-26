@@ -78,4 +78,21 @@ describe('Collection', () => {
     expect(state.actions.testAction).toEqual(expect.any(Function))
   })
 
+  it('::upsert accepts arrays', () => {
+
+    const state = new Collection('CollectionTest')
+    const action = state.actions.upsert([
+      {_id: 1, name: 'test'},
+      {_id: 2, name: 'test'},
+    ])
+    const newState = combineReducers(state.reducer)(undefined, action)
+    
+    expect(newState.allIds.length).toBe(2)
+    const id1 = newState.allIds[0]
+    const id2 = newState.allIds[1]
+    expect(newState.byId[id1]).toEqual({_id: id1, name: 'test'})
+    expect(newState.byId[id2]).toEqual({_id: id2, name: 'test'})
+
+  })
+
 })
